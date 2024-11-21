@@ -50,12 +50,11 @@ public class LoginTest extends BaseTest {
 
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.name("password")).sendKeys("SuperSecretPassword!");
-        driver.findElement(By.xpath("//*[@id=\"login\"]/button/i")).click();
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
 
         String expectedText = "Secure Area";
         String actualText = driver.findElement(By.xpath("//h2[contains(text(), 'Secure Area')]\n")).getText();
         Assert.assertEquals(expectedText, actualText);
-
     }
 
 
@@ -64,10 +63,10 @@ public class LoginTest extends BaseTest {
 
         driver.findElement(By.id("username")).sendKeys("tomsmith1");
         driver.findElement(By.name("password")).sendKeys("SuperSecretPassword!");
-        driver.findElement(By.xpath("//*[@id=\"login\"]/button/i")).click();
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
         String expectedText = "Your username is invalid!";
        // String actualText = driver.findElement(By.xpath("//div[@id='flash'][contains(text(), 'Your username is invalid!')]\n")).getText();
-        String actualText = driver.findElement(By.id("flash")).getText();
+        String actualText = driver.findElement(By.xpath("//div[@id='flash']")).getText();
         Assert.assertEquals(expectedText, actualText);
     }
 
@@ -76,7 +75,7 @@ public class LoginTest extends BaseTest {
 
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.name("password")).sendKeys("SuperSecretPassword");
-        driver.findElement(By.xpath("//*[@id=\"login\"]/button/i")).click();
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
         String expectedText = "Your password is invalid!";
         String actualText = driver.findElement(By.xpath("//*[@id=\"flash\"]")).getText();
         Assert.assertEquals(expectedText, actualText);
@@ -86,7 +85,6 @@ public class LoginTest extends BaseTest {
     @After
     public void tearDown() {
         closeBrowser();
-
     }
 
 
